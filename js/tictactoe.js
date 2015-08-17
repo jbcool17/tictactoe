@@ -2,7 +2,26 @@ var Tictactoe = {
 
     PlayerOne: 0,
     PlayerTwo: 0,
-    tictactoeStorage: [[null, null, null], [null, null, null], [null, null, null]],
+    tictactoeStorage: [ [null, null, null], 
+                        [null, null, null], 
+                        [null, null, null]],
+    playerOnePoints: [],
+    playerTwoPoints: [],
+
+    tictactoeNumbers: [ [11, 12, 13], 
+                        [21, 22, 23], 
+                        [31, 32, 33]
+                        ],
+    winningCombo: [
+                    [11, 12, 13],
+                    [21, 22, 23],
+                    [31, 32, 33],
+                    [11, 21, 31],
+                    [12, 22, 32],
+                    [13, 23, 33],
+                    [11, 22, 33],
+                    [13, 22, 31]
+                    ],
 
     turnX: true,
 
@@ -15,6 +34,9 @@ var Tictactoe = {
 
             }
         }
+
+        Tictactoe.playerOnePoints = [];
+        Tictactoe.playerTwoPoints = [];
 
         //Clear Board
         $('#11').text('');
@@ -36,9 +58,6 @@ var Tictactoe = {
 
         if (turn === true) {
             console.log(id);
-            // var player1 = true;
-            
-
             
             var thisID = id
             var getNums = thisID.toString().split('');
@@ -47,21 +66,22 @@ var Tictactoe = {
              if (Tictactoe.tictactoeStorage[row][colum] === 'X' || Tictactoe.tictactoeStorage[row][colum] === 'O') {
                 return console.log('please choose again, already taken');
             }
-            console.log('Target', this.id, 'Split', row, parseInt(colum));
+            console.log('PlayerOne', id, 'Split', row, parseInt(colum));
 
            
              //sets button to X
              var player = (Tictactoe.turnX === true) ? 'X' : 'O';
             
             Tictactoe.tictactoeStorage[row][colum] = player;
+            Tictactoe.playerOnePoints.push(Tictactoe.tictactoeNumbers[row][colum]);
              //Places X
              $('#' + id).text(player);
-             //$('#' + id).removeAttr('id');
 
             //run check
             Tictactoe.turnX = false;
 
             Tictactoe.checkForWinner();
+            //Tictactoe.newCheck();
 
         } else {
             console.log(id);
@@ -75,14 +95,14 @@ var Tictactoe = {
                 return console.log('please choose again, already taken');
             }
 
-            console.log('Target', this.id, 'Split', row, parseInt(colum));
+            console.log('PlayerTwo', id, 'Split', row, parseInt(colum));
 
            // var player1 = true;
             var player = (Tictactoe.turnX === true) ? 'X' : 'O';
              //sets button to X
 
-
             Tictactoe.tictactoeStorage[row][colum] = player;
+            Tictactoe.playerTwoPoints.push(Tictactoe.tictactoeNumbers[row][colum]);
              //Places Letter
              $('#' + id).text(player);
              //$('#' + id).removeAttr('id');
@@ -91,6 +111,48 @@ var Tictactoe = {
             Tictactoe.turnX = true;
 
             Tictactoe.checkForWinner();
+            //Tictactoe.newCheck();
+        }
+
+    },
+
+    newCheck: function () {
+        //var first_array = [1, 2, 6, 8, 9]; var second_array = [1, 4, 5];  var diff = $(first_array).not(second_array).get();
+        var playerOne = Tictactoe.playerOnePoints;
+        var playerTwo = Tictactoe.playerTwoPoints;
+
+        for (var i = 0; i < Tictactoe.winningCombo.length; i++) {
+                
+                var first_array = [];
+                var second_array = [];
+                console.log('PlayerOne', playerOne, ': ', Tictactoe.winningCombo[i]);
+
+                first_array = playerOne.sort(); 
+                second_array = Tictactoe.winningCombo[i];  
+                var diff = $(first_array).not(second_array).get();
+                console.log(first_array, second_array, 'Diff', diff.length);
+                if (first_array === second_array)
+
+
+                if (diff.length === 0 && first_array.length >= 3){
+                    return console.log('player one wins!')}
+
+                
+        }
+
+        for (var i = 0; i < Tictactoe.winningCombo.length; i++) {
+            
+                var first_array = [];
+                var second_array = [];
+                console.log('PlayerTwo', playerTwo, ': ', Tictactoe.winningCombo[i]);
+
+                first_array = playerTwo.sort(); 
+                second_array = Tictactoe.winningCombo[i];  
+                var diff = $(first_array).not(second_array).get();
+                console.log(first_array, second_array, 'Diff', diff);
+            
+            if (diff.length === 0 && first_array.length >= 3) { return console.log('player two wins!') }
+
         }
 
     },
@@ -101,7 +163,6 @@ var Tictactoe = {
     checkForWinner: function () {
         //runs the game
         var tttS = Tictactoe.tictactoeStorage;
-
 
 
         //ROW1
@@ -194,80 +255,82 @@ var Tictactoe = {
         $('td').hover( function() { $(this).attr('class', 'squareRed')},
             function () {$(this).attr('class', 'square')});
 
-
+        //RESETS BOARD
         $('#reset').on('click', Tictactoe.resetBoard);
 
-        //$('td').on('click', Tictactoe.chooseX);
+        $('div.board').on('click', function(e) {
+            console.log( 'Event:', e, e.target.id, 'TEST OUTPUT');
+            
+            Tictactoe.choose(e.target.id, Tictactoe.turnX);
+
+            
+        });
+
+        
 
         //ROW1
-        $('#11').on('click', function(e) {
-            console.log(e.target.id);
+        // $('#11').on('click', function(e) {
+        //     console.log(e.target.id);
 
-            Tictactoe.choose(e.target.id, Tictactoe.turnX);
+        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
 
             
-        });
-        $('#12').on('click', function(e) {
-            console.log(e.target.id);
+        // });
+        // $('#12').on('click', function(e) {
+        //     console.log(e.target.id);
 
-            Tictactoe.choose(e.target.id, Tictactoe.turnX);
+        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
             
-        });
+        // });
 
-        $('#13').on('click', function(e) {
-            console.log(e.target.id);
+        // $('#13').on('click', function(e) {
+        //     console.log(e.target.id);
 
-            Tictactoe.choose(e.target.id, Tictactoe.turnX);
+        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
         
-        });
-        //ROW2
-        $('#21').on('click', function(e) {
-            console.log(e.target.id);
+        // });
+        // //ROW2
+        // $('#21').on('click', function(e) {
+        //     console.log(e.target.id);
 
-            Tictactoe.choose(e.target.id, Tictactoe.turnX);
+        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
             
-        });
+        // });
 
-        $('#22').on('click', function(e) {
-            console.log(e.target.id);
+        // $('#22').on('click', function(e) {
+        //     console.log(e.target.id);
 
-            Tictactoe.choose(e.target.id, Tictactoe.turnX);
+        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
             
-        });
+        // });
 
-        $('#23').on('click', function(e) {
-            console.log(e.target.id);
+        // $('#23').on('click', function(e) {
+        //     console.log(e.target.id);
 
-            Tictactoe.choose(e.target.id, Tictactoe.turnX);
+        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
             
-        });
-        //ROW3
-        $('#31').on('click', function(e) {
-            console.log(e.target.id);
+        // });
+        // //ROW3
+        // $('#31').on('click', function(e) {
+        //     console.log(e.target.id);
 
-            Tictactoe.choose(e.target.id, Tictactoe.turnX);
+        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
             
-        });
-        $('#32').on('click', function(e) {
-            console.log(e.target.id);
+        // });
+        // $('#32').on('click', function(e) {
+        //     console.log(e.target.id);
 
-            Tictactoe.choose(e.target.id, Tictactoe.turnX);
+        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
             
-        });
+        // });
 
-        $('#33').on('click', function(e) {
-            console.log(e.target.id);
+        // $('#33').on('click', function(e) {
+        //     console.log(e.target.id);
 
-            Tictactoe.choose(e.target.id, Tictactoe.turnX);
+        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
             
-        });
-
-
-
-
-        
+        // }); 
     
-
     }
 };
 
@@ -275,24 +338,5 @@ var Tictactoe = {
 $( document ).ready(function() {
     Tictactoe.init();
     console.log('Game Loaded');
-    //Tictactoe.runGame();
-
-
-
 
 });
-
-
-
-
-//Game Loads
-
-//Player One choose X or O
-
-//set PlayerOne to X and PlayerTwo to O
-
-//start game - are you ready to start
-
-//Switches each time - Plater will click in box
-
-//Create Message
