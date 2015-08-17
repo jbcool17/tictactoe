@@ -1,5 +1,9 @@
 #Title: Tic Tac Toe
 
 ###Type:
-- Project
+- TODO
+
+- Optimize winner
+
+- Which browsers work with div.board
 

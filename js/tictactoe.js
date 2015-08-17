@@ -80,8 +80,8 @@ var Tictactoe = {
             //run check
             Tictactoe.turnX = false;
 
-            Tictactoe.checkForWinner();
-            //Tictactoe.newCheck();
+            //Tictactoe.checkForWinner();
+            Tictactoe.newCheck();
 
         } else {
             console.log(id);
@@ -110,8 +110,8 @@ var Tictactoe = {
             //run check
             Tictactoe.turnX = true;
 
-            Tictactoe.checkForWinner();
-            //Tictactoe.newCheck();
+            //Tictactoe.checkForWinner();
+            Tictactoe.newCheck();
         }
 
     },
@@ -121,38 +121,38 @@ var Tictactoe = {
         var playerOne = Tictactoe.playerOnePoints;
         var playerTwo = Tictactoe.playerTwoPoints;
 
+        //player one
         for (var i = 0; i < Tictactoe.winningCombo.length; i++) {
                 
                 var first_array = [];
                 var second_array = [];
                 console.log('PlayerOne', playerOne, ': ', Tictactoe.winningCombo[i]);
 
-                first_array = playerOne.sort(); 
-                second_array = Tictactoe.winningCombo[i];  
-                var diff = $(first_array).not(second_array).get();
-                console.log(first_array, second_array, 'Diff', diff.length);
-                if (first_array === second_array)
-
-
-                if (diff.length === 0 && first_array.length >= 3){
-                    return console.log('player one wins!')}
-
-                
+                //first_array = ; 
+                $winningCombo = $(Tictactoe.winningCombo[i]);  
+                var diff = $winningCombo.not(playerOne).get();
+                console.log(playerOne, second_array, 'Diff', diff.length);
+              
+                if (diff.length === 0){
+                    return console.log('player one wins!')
+                }      
         }
-
+       
+        //player two
         for (var i = 0; i < Tictactoe.winningCombo.length; i++) {
-            
+                
                 var first_array = [];
                 var second_array = [];
                 console.log('PlayerTwo', playerTwo, ': ', Tictactoe.winningCombo[i]);
 
-                first_array = playerTwo.sort(); 
-                second_array = Tictactoe.winningCombo[i];  
-                var diff = $(first_array).not(second_array).get();
-                console.log(first_array, second_array, 'Diff', diff);
-            
-            if (diff.length === 0 && first_array.length >= 3) { return console.log('player two wins!') }
-
+                //first_array = ; 
+                $winningCombo = $(Tictactoe.winningCombo[i]);  
+                var diff = $winningCombo.not(playerTwo).get();
+                console.log(playerTwo, second_array, 'Diff', diff.length);
+              
+                if (diff.length === 0){
+                    return console.log('player two wins!')
+                }      
         }
 
     },
