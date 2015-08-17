@@ -3,8 +3,11 @@ var Tictactoe = {
     consoleLog: function (e) {
         //for testing
          console.log('consoleLog function has run on BUTTON: ', e.target.id, $(e.target).parent().parent().attr('class'));
+         //Gets Row Name via class name of div.
          var row = $(e.target).parent().parent().attr('class') - 1;
+         //Gets Colum Number from button click
          var colum = e.target.id - 1;
+
 
          var player1 = true;
          var player = (player1 === true) ? 'X' : 'O';
@@ -14,16 +17,34 @@ var Tictactoe = {
 
 
     },
-
+    //Game Board as array.
     tictactoeStorage: [[null, null, null], [null, null, null], [null, null, null]],
-
+    //Player Scores
     player1Score: 0,
     player2Score: 0,
+
+    runGame: function () {
+        //runs the game
+        //
+    },
+
+    resetBoard: function () {
+        for(var i = 0; i < Tictactoe.tictactoeStorage.length; i ++) {
+            for (var j = 0; j < Tictactoe.tictactoeStorage[i].length; j++) {
+                Tictactoe.tictactoeStorage[i][j] = null;
+                console.log(Tictactoe.tictactoeStorage[i][j])
+
+            }
+        }
+    },
 
 
 
 
     checkGame: function () {
+
+        //check if there is a winner;
+
         var ttt = Tictactoe.tictactoeStorage;
         console.log(ttt);
         var player1 = 'X';
@@ -77,3 +98,5 @@ $(document).ready(function() {
 //start game - are you ready to start
 
 //Switches each time - Plater will click in box
+
+//Create Message
