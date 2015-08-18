@@ -11,7 +11,7 @@ var Tictactoe = {
     ],
 
     //locations from tictactoeNumbers are added here.
-    playerOnePoints: [],
+    playerOneCollect: [],
     playerTwoPoints: [],
 
     tictactoeNumbers: [
@@ -46,7 +46,7 @@ var Tictactoe = {
             }
         }
         //set player choices to none.
-        Tictactoe.playerOnePoints = [];
+        Tictactoe.playerOneCollect = [];
         Tictactoe.playerTwoPoints = [];
 
         //Clears Board
@@ -74,7 +74,7 @@ var Tictactoe = {
         Tictactoe.tictactoeBoard[row][colum] = player;
 
         //Get which player and pushes value to it.
-        var tttPlayerPoints = (player === "X") ? Tictactoe.playerOnePoints : Tictactoe.playerTwoPoints
+        var tttPlayerPoints = (player === "X") ? Tictactoe.playerOneCollect : Tictactoe.playerTwoPoints
         tttPlayerPoints.push(Tictactoe.tictactoeNumbers[row][colum]);
 
         //Places player of html
@@ -89,19 +89,21 @@ var Tictactoe = {
 
 
         //console.log('Turn Status : ', Tictactoe.turnX, 'TEST');
-        console.log('Player: ', player, ' ID: ', id, 'Position: ', row, colum, 'Points Collected: ', Tictactoe.playerOnePoints);
+        console.log('Player: ', player, ' ID: ', id, 'Position: ', row, colum, 'Squares Collected: ', Tictactoe.playerOneCollect);
 
 
     },
     // CHECK FOR WINNER
     checkForWinner: function() {
         //Checks for draw.
-        if( Tictactoe.playerOnePoints.length + Tictactoe.playerTwoPoints.length === 9) {alert('ITS A DRAW!')}
+        if( Tictactoe.playerOneCollect.length + Tictactoe.playerTwoPoints.length === 9) {
+            return alert('ITS A DRAW!');
+        }
 
-        var playerOne = Tictactoe.playerOnePoints;
+        var playerOne = Tictactoe.playerOneCollect;
         var playerTwo = Tictactoe.playerTwoPoints;
 
-        var currentPlayer = (Tictactoe.turnX === true) ? Tictactoe.playerOnePoints : Tictactoe.playerTwoPoints;
+        var currentPlayer = (Tictactoe.turnX === true) ? Tictactoe.playerOneCollect : Tictactoe.playerTwoPoints;
         //console.log('1', Tictactoe.turnX);
         var player = (Tictactoe.turnX === true) ? 'X' : 'O';
         //console.log('2', Tictactoe.turnX);
@@ -113,6 +115,7 @@ var Tictactoe = {
             $winningCombo = $(Tictactoe.winningCombo[i]);
             var diff = $winningCombo.not(currentPlayer).get();
             
+            console.log('Diff', diff.length, 'Diff Array: ', diff, player, currentPlayer.length);
 
             if (diff.length === 0) {
 
@@ -148,22 +151,33 @@ var Tictactoe = {
         var turn = Tictactoe.turnX;
         var numbers = Tictactoe.tictactoeNumbers
         
-        if (turn === false && $('#22').is(':empty')) {
+        if (turn === false && $('#22').is(':empty')) { //middle
 
             Tictactoe.chooseSquare('22', false);
 
-        } else if ( turn === false && $('#11').is(':empty')) {
+        } else if ( turn === false && $('#11').is(':empty')) { //corners
             Tictactoe.chooseSquare('11', false);
-        } else if ( turn === false && $('#13').is(':empty')) {
+        } else if ( turn === false && $('#13').is(':empty')) { 
             Tictactoe.chooseSquare('13', false);
         } else if ( turn === false && $('#33').is(':empty')) {
             Tictactoe.chooseSquare('33', false);
         } else if ( turn === false && $('#31').is(':empty')) {
             Tictactoe.chooseSquare('31', false);
 
+        } else if ( turn === false && $('#22').is(':empty')) {
+            Tictactoe.chooseSquare('22', false);
+        } else if ( turn === false && $('#23').is(':empty')) {
+            Tictactoe.chooseSquare('23', false);
+        } else if ( turn === false && $('#12').is(':empty')) {
+            Tictactoe.chooseSquare('12', false);
+        } else if ( turn === false && $('#32').is(':empty')) {
+            Tictactoe.chooseSquare('32', false);
+
         } else {
             console.log('hmmm....');
         }
+
+        //check diff array  if 2 - 
 
     },
 
