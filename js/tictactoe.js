@@ -78,7 +78,6 @@ var Tictactoe = {
         //sets player to X or O
         var player = (Tictactoe.turnX === true) ? 'X' : 'O';
 
-
         Tictactoe.tictactoeBoard[row][colum] = player;
 
         //Get which player and pushes value to it.
@@ -98,6 +97,8 @@ var Tictactoe = {
 
         console.log('Turn Status : ', Tictactoe.turnX, 'TEST');
         console.log('Player: ', player, ' ID: ', id, 'Position: ', row, colum, 'Points Collected: ', Tictactoe.playerOnePoints);
+        //Check if draw.
+        if( Tictactoe.playerOnePoints.length + Tictactoe.playerTwoPoints.length === 9) {alert('ITS A DRAW!')}
 
 
 
@@ -109,9 +110,12 @@ var Tictactoe = {
         var playerTwo = Tictactoe.playerTwoPoints;
 
 
+
+
         var currentPlayer = (Tictactoe.turnX === true) ? Tictactoe.playerOnePoints : Tictactoe.playerTwoPoints;
         var player = Tictactoe.turnX = (Tictactoe.turnX === true) ? 'X' : 'O';
- 
+
+
 
         for (var i = 0; i < Tictactoe.winningCombo.length; i++) {
 
@@ -121,14 +125,13 @@ var Tictactoe = {
 
             if (diff.length === 0) {
 
-                console.log(player, ' wins!', 'Diff', diff.length, Tictactoe.turnX);
+                console.log(player, ' wins!', 'Diff', diff.length, Tictactoe.turnX, currentPlayer.length);
                 Tictactoe.addToScore(Tictactoe.turnX);
-                Tictactoe.resetBoard(Tictactoe.turnX);
+                
                 alert(player + ' Wins!');
-
+                Tictactoe.resetBoard();
 
             }
-
 
         }
 
@@ -160,16 +163,6 @@ var Tictactoe = {
 
         } else {
 
-            // for (var i = 0; i < board.length; i++) {
-            //     for (var j = 0; j < board[i].length; j++)
-            //         if (board[i][j] === 'X') {
-                        
-            //             console.log('found x', typeof Tictactoe.tictactoeNumbers[i][j]);
-                        
-            //             Tictactoe.chooseSquare(numbers[i][j].toString(), false);
-            //     }
-            // }
-
             for (var i = 0; i < Tictactoe.playerOnePoints.length; i++) {
 
                 $winningCombo = $(Tictactoe.winningCombo[i]);
@@ -182,24 +175,14 @@ var Tictactoe = {
                     if ( Math.round(Math.random()) % 2 === 0){
                         Tictactoe.chooseSquare(diff[0].toString(), false);
 
-                    } else if (( Math.round(Math.random()) % 2 === 1)) {
-                        Tictactoe.chooseSquare(diff[1].toString(), false);
                     } else {
-                        //Tictactoe.chooseSquare(diff[2].toString(), false);
+                        Tictactoe.chooseSquare(diff[1].toString(), false);
                     }
-
-
-                    
 
                 }
 
-
           }
-
-
-
-
-            
+    
         }
 
     },
