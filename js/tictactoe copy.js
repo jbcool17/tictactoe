@@ -60,41 +60,64 @@ var Tictactoe = {
     },
 
     chooseSquare: function (id, turn) {
-            //Gets ID and splits it to array.            
-            var splitId = id.split('');
-            //Set Row and Colum to numbers.
-            var row = parseInt(splitId[0]) - 1;
-            var colum = parseInt(splitId[1]) - 1;
 
-            //If square used
+
+        if (turn === true) {
+            console.log(id);
+            
+            var thisID = id
+            var getNums = thisID.toString().split('');
+            var row = parseInt(getNums[0]) - 1;
+            var colum = parseInt(getNums[1]) - 1;
              if (Tictactoe.tictactoeStorage[row][colum] === 'X' || Tictactoe.tictactoeStorage[row][colum] === 'O') {
-                return console.log('please choose again, square is already taken');
+                return console.log('please chooseSquare again, already taken');
             }
             
-             //sets player to X
+             //sets button to X
              var player = (Tictactoe.turnX === true) ? 'X' : 'O';
             
-
             Tictactoe.tictactoeStorage[row][colum] = player;
-
-            //Get which player and pushes value to it.
-            var tttPlayerPoints = ( player === "X") ? Tictactoe.playerOnePoints : Tictactoe.playerTwoPoints
-            tttPlayerPoints.push(Tictactoe.tictactoeNumbers[row][colum]);
-            
-             //Places player of html
+            Tictactoe.playerOnePoints.push(Tictactoe.tictactoeNumbers[row][colum]);
+             //Places X
              $('#' + id).text(player);
 
-            //winner?
+            //run check
+            Tictactoe.turnX = false;
+
+            console.log('PlayerOne ID: ', id, 'Position: ', row, colum, 'Points Collected: ', Tictactoe.playerOnePoints);
+
             Tictactoe.checkForWinner();
 
-            //Sets player for next turn.
-            Tictactoe.turnX = (player === 'X') ? false : true; 
-
-            console.log('Turn Status : ', Tictactoe.turnX, 'TEST');
-            console.log('Player: ', player, ' ID: ', id, 'Position: ', row, colum, 'Points Collected: ', Tictactoe.playerOnePoints);
-
+        } else {
+            console.log(id);
             
-        
+            var thisID = id
+            var getNums = thisID.toString().split('');
+            var row = parseInt(getNums[0]) - 1;
+            var colum = parseInt(getNums[1]) - 1;
+             
+            if (Tictactoe.tictactoeStorage[row][colum] === 'O' || Tictactoe.tictactoeStorage[row][colum] === 'X') {
+                return console.log('please chooseSquare again, already taken');
+            }
+
+           // var player1 = true;
+            var player = (Tictactoe.turnX === true) ? 'X' : 'O';
+             //sets button to X
+
+            Tictactoe.tictactoeStorage[row][colum] = player;
+            Tictactoe.playerTwoPoints.push(Tictactoe.tictactoeNumbers[row][colum]);
+             //Places Letter
+             $('#' + id).text(player);
+             
+            //run check
+            Tictactoe.turnX = true;
+
+            console.log('PlayerTwo ID: ', id, 'Position: ', row, colum, 'Points Collected: ', Tictactoe.playerTwoPoints);
+
+            Tictactoe.checkForWinner();
+            
+        }
+
     },
     // CHECK FOR WINNER
     checkForWinner: function () {
@@ -102,21 +125,32 @@ var Tictactoe = {
         var playerOne = Tictactoe.playerOnePoints;
         var playerTwo = Tictactoe.playerTwoPoints;
 
-
-        var currentPlayer = (Tictactoe.turnX === true) ? Tictactoe.playerOnePoints : Tictactoe.playerTwoPoints;
-        var player = Tictactoe.turnX = (Tictactoe.turnX === true) ? 'X' : 'O';
-
-        
+        //player one
         for (var i = 0; i < Tictactoe.winningCombo.length; i++) {
                 
                 $winningCombo = $(Tictactoe.winningCombo[i]);  
-                var diff = $winningCombo.not(currentPlayer).get();
+                var diff = $winningCombo.not(playerOne).get();
                 //console.log(playerOne, 'Diff', diff.length);
               
                 if (diff.length === 0){
 
-                    console.log(player, ' wins!', 'Diff', diff.length);
-                    return alert(player + ' Wins!');
+                    console.log(playerOne, 'Diff', diff.length, 'player X wins!');
+                    return alert('X Wins!');
+                }      
+        }
+       
+        //player two
+        for (var i = 0; i < Tictactoe.winningCombo.length; i++) {
+
+                $winningCombo = $(Tictactoe.winningCombo[i]);  
+                var diff = $winningCombo.not(playerTwo).get();
+                //console.log(playerTwo, 'Diff', diff.length);
+              
+                if (diff.length === 0){
+
+                    console.log(playerTwo, 'Diff', diff.length, 'player O wins!');
+                    
+                    return alert('O Wins!');
                 }      
         }
 
