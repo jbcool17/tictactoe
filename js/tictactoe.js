@@ -32,7 +32,7 @@ var Tictactoe = {
     turnX: true,
 
     //Resets the board.
-    resetBoard: function () {
+    resetBoard: function (x) {
         //resets Storage array
         for(var i = 0; i < Tictactoe.tictactoeStorage.length; i ++) {
 
@@ -45,6 +45,7 @@ var Tictactoe = {
         //set player choices to none.
         Tictactoe.playerOnePoints = [];
         Tictactoe.playerTwoPoints = [];
+        
 
         //Clears Board
         $('#11').text('');
@@ -71,7 +72,7 @@ var Tictactoe = {
                 return console.log('please choose again, square is already taken');
             }
             
-             //sets player to X
+             //sets player to X or O
              var player = (Tictactoe.turnX === true) ? 'X' : 'O';
             
 
@@ -89,6 +90,8 @@ var Tictactoe = {
 
             //Sets player for next turn.
             Tictactoe.turnX = (player === 'X') ? false : true; 
+            $('#message').text((Tictactoe.turnX === true) ? 'X' : 'O');
+
 
             console.log('Turn Status : ', Tictactoe.turnX, 'TEST');
             console.log('Player: ', player, ' ID: ', id, 'Position: ', row, colum, 'Points Collected: ', Tictactoe.playerOnePoints);
@@ -107,6 +110,8 @@ var Tictactoe = {
         var player = Tictactoe.turnX = (Tictactoe.turnX === true) ? 'X' : 'O';
 
         
+        
+        
         for (var i = 0; i < Tictactoe.winningCombo.length; i++) {
                 
                 $winningCombo = $(Tictactoe.winningCombo[i]);  
@@ -115,10 +120,35 @@ var Tictactoe = {
               
                 if (diff.length === 0){
 
-                    console.log(player, ' wins!', 'Diff', diff.length);
-                    return alert(player + ' Wins!');
-                }      
+                    console.log(player, ' wins!', 'Diff', diff.length, Tictactoe.turnX);
+                    Tictactoe.addToScore(Tictactoe.turnX);
+                    Tictactoe.resetBoard(Tictactoe.turnX);
+                    alert(player + ' Wins!');
+
+                
+                }   
+
+
         }
+
+    },
+
+    addToScore: function (x) {
+
+        if (x === "X") {
+            Tictactoe.PlayerOne += 1 
+            $('#playerone').text(Tictactoe.PlayerOne);
+            //console.log(Tictactoe.turnX);
+        } else { 
+            Tictactoe.PlayerTwo += 1;
+            $('#playertwo').text(Tictactoe.PlayerTwo);
+            //console.log(Tictactoe.turnX);
+        }
+
+    },
+
+    //AI
+    computerAI: function () {
 
     },
 
@@ -147,5 +177,6 @@ var Tictactoe = {
 $( document ).ready(function() {
     Tictactoe.init();
     console.log('Game Loaded');
+    $('#message').text((Tictactoe.turnX === true) ? 'X' : 'O');
 
 });

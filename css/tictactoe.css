@@ -24,11 +24,33 @@ body {background-color: black; font-family: 'Roboto', sans-serif;}
   clear: both;
 }
 
-.message {
+.reset {
   
   margin-top: 30px;
   font-size: 1em;
 }
+
+.scores {
+  color: black; 
+  float: left;
+  font-size: 1.5em;
+  background-color: white;
+  padding: 10px;
+  border: 2px solid #20AAFF;
+  text-align: left;
+}
+
+.message {
+    color: black; 
+    float: right;
+    font-size: 1em;
+    background-color: white;
+    padding: 10px;
+    border: 2px solid #20AAFF;
+    text-align: left;
+}
+
+.message span {font-size: 2em; vertical-align: middle;}
 
 /*THE BOARD*/
 
