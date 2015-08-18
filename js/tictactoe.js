@@ -115,8 +115,8 @@ var Tictactoe = {
         }
 
     },
-
-    newCheck: function () {
+    // CHECK FOR WINNER
+    checkForWinner: function () {
         //var first_array = [1, 2, 6, 8, 9]; var second_array = [1, 4, 5];  var diff = $(first_array).not(second_array).get();
         var playerOne = Tictactoe.playerOnePoints;
         var playerTwo = Tictactoe.playerTwoPoints;
@@ -134,7 +134,8 @@ var Tictactoe = {
                 console.log(playerOne, second_array, 'Diff', diff.length);
               
                 if (diff.length === 0){
-                    return console.log('player one wins!')
+                    console.log('player X wins!');
+                    return alert('X Wins!');
                 }      
         }
        
@@ -151,103 +152,17 @@ var Tictactoe = {
                 console.log(playerTwo, second_array, 'Diff', diff.length);
               
                 if (diff.length === 0){
-                    return console.log('player two wins!')
+
+                    console.log('player O wins!');
+                    
+                    return alert('O Wins!');
                 }      
         }
 
     },
 
 
-    //CREATE CHECK
-
-    checkForWinner: function () {
-        //runs the game
-        var tttS = Tictactoe.tictactoeStorage;
-
-
-        //ROW1
-        if (tttS[0][0] === "X" && tttS[0][1] === 'X' && tttS[0][2] === 'X' ) {
-            alert('X Wins!')
-            console.log('X Wins');
-        }
-
-        if (tttS[0][0] === "O" && tttS[0][1] === 'O' && tttS[0][2] === 'O' ) {
-            alert('O Wins!')
-            console.log('O Wins');
-        }
-        //ROW2
-        if (tttS[1][0] === "X" && tttS[1][1] === 'X' && tttS[1][2] === 'X' ) {
-            alert('X Wins!')
-            console.log('X Wins');
-        }
-
-        if (tttS[1][0] === "O" && tttS[1][1] === 'O' && tttS[1][2] === 'O' ) {
-            alert('O Wins!')
-            console.log('O Wins');
-        }
-        //ROW3
-        if (tttS[2][0] === "X" && tttS[2][1] === 'X' && tttS[2][2] === 'X' ) {
-            alert('X Wins!')
-            console.log('X Wins');
-        }
-
-        if (tttS[2][0] === "O" && tttS[2][1] === 'O' && tttS[2][2] === 'O' ) {
-            alert('O Wins!')
-            console.log('O Wins');
-        }
-
-        //COLUM1
-        if (tttS[0][0] === "X" && tttS[1][0] === 'X' && tttS[2][0] === 'X' ) {
-            alert('X Wins!')
-            console.log('X Wins');
-        }
-
-        if (tttS[0][0] === "O" && tttS[1][0] === 'O' && tttS[2][0] === 'O' ) {
-            alert('O Wins!')
-            console.log('O Wins');
-        }
-        //COLUM2
-        if (tttS[0][1] === "X" && tttS[1][1] === 'X' && tttS[2][1] === 'X' ) {
-            alert('X Wins!')
-            console.log('X Wins');
-        }
-
-        if (tttS[0][1] === "O" && tttS[1][1] === 'O' && tttS[2][1] === 'O' ) {
-            alert('O Wins!')
-            console.log('O Wins');
-        }
-        //COLUM3
-        if (tttS[0][2] === "X" && tttS[1][2] === 'X' && tttS[2][2] === 'X' ) {
-            alert('X Wins!')
-            console.log('X Wins');
-        }
-
-        if (tttS[0][2] === "O" && tttS[1][2] === 'O' && tttS[2][2] === 'O' ) {
-            alert('O Wins!')
-            console.log('O Wins');
-        }
-
-
-        //DIANGONAL 
-        if (tttS[0][0] === "X" && tttS[1][1] === 'X' && tttS[2][2] === 'X' ) {
-            alert('X Wins!')
-            console.log('X Wins');
-        }
-        if (tttS[0][0] === "O" && tttS[1][1] === 'O' && tttS[2][2] === 'O' ) {
-            alert('O Wins!')
-            console.log('O Wins');
-        }
-
-        if (tttS[0][2] === "X" && tttS[1][1] === 'X' && tttS[2][0] === 'X' ) {
-            alert('X Wins!')
-            console.log('X Wins');
-        }
-        if (tttS[0][2] === "O" && tttS[1][1] === 'O' && tttS[2][0] === 'O' ) {
-            alert('O Wins!')
-            console.log('O Wins');
-        }
-        
-    },
+    
 
     //click functions
     init: function() {
@@ -259,77 +174,14 @@ var Tictactoe = {
         $('#reset').on('click', Tictactoe.resetBoard);
 
         $('div.board').on('click', function(e) {
-            console.log( 'Event:', e, e.target.id, 'TEST OUTPUT');
+
+            console.log('TEST OUTPUT', 'Event:', e, e.target.id);
             
             Tictactoe.choose(e.target.id, Tictactoe.turnX);
-
-            
+    
         });
 
         
-
-        //ROW1
-        // $('#11').on('click', function(e) {
-        //     console.log(e.target.id);
-
-        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
-
-            
-        // });
-        // $('#12').on('click', function(e) {
-        //     console.log(e.target.id);
-
-        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
-            
-        // });
-
-        // $('#13').on('click', function(e) {
-        //     console.log(e.target.id);
-
-        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
-        
-        // });
-        // //ROW2
-        // $('#21').on('click', function(e) {
-        //     console.log(e.target.id);
-
-        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
-            
-        // });
-
-        // $('#22').on('click', function(e) {
-        //     console.log(e.target.id);
-
-        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
-            
-        // });
-
-        // $('#23').on('click', function(e) {
-        //     console.log(e.target.id);
-
-        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
-            
-        // });
-        // //ROW3
-        // $('#31').on('click', function(e) {
-        //     console.log(e.target.id);
-
-        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
-            
-        // });
-        // $('#32').on('click', function(e) {
-        //     console.log(e.target.id);
-
-        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
-            
-        // });
-
-        // $('#33').on('click', function(e) {
-        //     console.log(e.target.id);
-
-        //     Tictactoe.choose(e.target.id, Tictactoe.turnX);
-            
-        // }); 
     
     }
 };

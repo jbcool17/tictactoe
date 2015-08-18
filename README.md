@@ -3,8 +3,15 @@
 ###Type:
 - TODO
 
-- Optimize winner
+- Optimize winner - done - delete other function.
 
 - Which browsers work with div.board
 
-- tictacdoh
+- tictacdoh - styles
+
+- add if no one wins
+
+
+
+
+
