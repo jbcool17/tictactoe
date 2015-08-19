@@ -178,71 +178,18 @@ var Tictactoe = {
         var turn = Tictactoe.turnX;
         var numbers = Tictactoe.tictactoeNumbers
 
-        
-        var a = $(Tictactoe.emptySquares).not(Tictactoe.winningCombo[0]).get()
-        console.log($(Tictactoe.emptySquares).not(a).get());
-        
-        var b = Math.floor(Math.random() * Tictactoe.emptySquares.length) + 0;
-        Tictactoe.chooseSquare((Tictactoe.emptySquares[b]).toString(), false);
 
-        // if (turn === false && $('#22').is(':empty')) { //middle
 
-        //     Tictactoe.chooseSquare('22', false);
+            var a = $(Tictactoe.emptySquares).not(Tictactoe.winningCombo[0]).get()
+            console.log($(Tictactoe.emptySquares).not(a).get());
+            
+            var b = Math.floor(Math.random() * Tictactoe.emptySquares.length)+1;
+             
+            var c = [22, 11, 13, 33, 31]
+            var d = Math.floor(Math.random() * c.length)+1;
+            //console.log(d);
 
-        // } else if ( turn === false && $('#11').is(':empty')) { //corners
-
-        //     Tictactoe.chooseSquare('11', false);
-
-        // } else if ( turn === false && $('#13').is(':empty')) { 
-
-        //     Tictactoe.chooseSquare('13', false);
-
-        // } else if ( turn === false && $('#33').is(':empty')) {
-
-        //     Tictactoe.chooseSquare('33', false);
-
-        // } else if ( turn === false && $('#31').is(':empty')) {
-
-        //  Tictactoe.chooseSquare('31', false);
-
-        // } else {
-
-        //     Tictactoe.chooseSquare((Tictactoe.emptySquares[0]).toString(), false);
-        // }
-
-        // var otherPlayer = (Tictactoe.turnX === true) ? Tictactoe.playerTwoCollect : Tictactoe.playerOneCollect;
-        // var currentPlayer = (Tictactoe.turnX === false) ? Tictactoe.playerTwoCollect : Tictactoe.playerOneCollect;
-
-        //     for (var i = 0; i < Tictactoe.winningCombo.length; i++) {
-
-        //         $winningCombo = $(Tictactoe.winningCombo[i]);
-        //         var diffEmpty = $(Tictactoe.emptySquares).not(Tictactoe.winningCombo[i]).get();
-        //         var diffOther = $winningCombo.not(otherPlayer).get();
-        //         var diffCurrent = $winningCombo.not(currentPlayer).get();
-        //         var diffDiff = $(diffOther).not($(diffCurrent)).get();
-                
-        //         console.log('diffEmpty: ', diffEmpty);
-        //         //console.log('Winning: ', Tictactoe.winningCombo[i]);
-        //         //console.log('Current:',currentPlayer, diffCurrent, diffCurrent.length);
-        //         //console.log('Other:', otherPlayer, diffOther, diffOther.length);
-        //         console.log('DiffDiff:', diffDiff);
-
-        // if diffDiff.len
-
-        //         if ( diffCurrent.length === 1 ) {
-        //             console.log('1')
-        //             Tictactoe.chooseSquare((diffEmpty[0]).toString(), false);
-                
-        //         } else if(diffCurrent.length <= 2) {
-        //             console.log('2')
-        //             Tictactoe.chooseSquare((diffEmpty[0]).toString(), false);
-        //         } else if(diffOther.length === 0) {
-        //             Tictactoe.chooseSquare((diffEmpty[0]).toString(), false);
-
-        //         }
-        //     }
-        
-           
+            Tictactoe.chooseSquare((Tictactoe.emptySquares[b]).toString(), false);
 
     },
 
