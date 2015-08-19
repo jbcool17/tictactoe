@@ -116,6 +116,7 @@ var Tictactoe = {
         }
 
         console.log('Player:', player,' ID: ', id, 'Position:', row, colum, 'Squares Collected:', playerCollect );
+        //Tictactoe.computerAI();
         
 
 
@@ -185,7 +186,7 @@ var Tictactoe = {
             var c = [22, 11, 13, 33, 31]
             var d = Math.floor(Math.random() * c.length)+1;
             if ( Tictactoe.emptySquares.length === 0 ) {
-                Tictactoe.chooseSquare((11).toString(), false);
+                Tictactoe.chooseSquare((22).toString(), false);
             } else {
                 Tictactoe.chooseSquare((Tictactoe.emptySquares[(b-1)]).toString(), false);
             }
@@ -208,12 +209,21 @@ var Tictactoe = {
 
         //RESETS BOARD
         $('#reset').on('click', Tictactoe.resetBoard);
+        $(document).on('keyup',function(evt) {
+            if (evt.keyCode == 27) {
+               Tictactoe.resetBoard();
+            }
+        });
+
 
         //COMPUTER PLAY
         $('#computer').on('click', function (e) {
-
             Tictactoe.computerAI();
-
+        });
+        $(document).on('keyup',function(evt) {
+            if (evt.keyCode == 32) {
+               Tictactoe.computerAI();
+            }
         });
 
         //Button Function to choose box
