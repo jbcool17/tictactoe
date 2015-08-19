@@ -115,9 +115,8 @@ var Tictactoe = {
             
         }
 
-        //console.log('Turn Status : ', Tictactoe.turnX, 'TEST');
         console.log('Player:', player,' ID: ', id, 'Position:', row, colum, 'Squares Collected:', playerCollect );
-        //Tictactoe.computerAI();
+        
 
 
     },
@@ -163,11 +162,11 @@ var Tictactoe = {
         if (x === "X") {
             Tictactoe.PlayerOne += 1
             $('#playerone').text(Tictactoe.PlayerOne);
-            //console.log(Tictactoe.turnX);
+    
         } else {
             Tictactoe.PlayerTwo += 1;
             $('#playertwo').text(Tictactoe.PlayerTwo);
-            //console.log(Tictactoe.turnX);
+            
         }
 
     },
@@ -178,8 +177,6 @@ var Tictactoe = {
         var turn = Tictactoe.turnX;
         var numbers = Tictactoe.tictactoeNumbers
 
-
-
             var a = $(Tictactoe.emptySquares).not(Tictactoe.winningCombo[0]).get()
             console.log($(Tictactoe.emptySquares).not(a).get());
             
@@ -187,9 +184,15 @@ var Tictactoe = {
              
             var c = [22, 11, 13, 33, 31]
             var d = Math.floor(Math.random() * c.length)+1;
-            //console.log(d);
+            if ( Tictactoe.emptySquares.length === 0 ) {
+                Tictactoe.chooseSquare((11).toString(), false);
+            } else {
+                Tictactoe.chooseSquare((Tictactoe.emptySquares[(b-1)]).toString(), false);
+            }
 
-            Tictactoe.chooseSquare((Tictactoe.emptySquares[b]).toString(), false);
+            // if (board[1][1]) {
+
+            // }
 
     },
 
@@ -209,14 +212,12 @@ var Tictactoe = {
         //COMPUTER PLAY
         $('#computer').on('click', function (e) {
 
-            //console.log('TEST OUTPUT', 'Event:', e, e.target.id);
             Tictactoe.computerAI();
+
         });
 
         //Button Function to choose box
         $('div.board').on('click', function(e) {
-
-            //console.log('TEST OUTPUT', 'Event:', e, e.target.id);
 
             Tictactoe.chooseSquare(e.target.id, Tictactoe.turnX);
 
