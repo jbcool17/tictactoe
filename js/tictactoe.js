@@ -130,7 +130,7 @@ var Tictactoe = {
 
         }
 
-        console.log('HELLO')
+        
         
         var playerOne = Tictactoe.playerOneCollect;
         var playerTwo = Tictactoe.playerTwoCollect;

@@ -1,24 +1,28 @@
-@import url(http://fonts.googleapis.com/css?family=Oleo+Script);
-@import url(http://fonts.googleapis.com/css?family=Ruluko);
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
+@import url(http://fonts.googleapis.com/css?family=Fredoka+One);
+/*@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);*/
+/*@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700);
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);*/
 
 html {min-height: 100%;}
 body {
- /* background-color: black;*/ 
-  font-family: 'Roboto', sans-serif;
+  /*background-color: black;*/
+  background-color: #031721; 
+  /*font-family: 'Roboto', sans-serif;*/
+  font-family: 'Fredoka One', cursive;
+  /*font-family: 'Ubuntu Mono', sans-serif;*/
   /*background-image: url('../img/s.jpg');
   background-position: center;*/
   
   height: 100%;
 
-  background: #000000;
-background: -moz-linear-gradient(top,  #000000 40%, #0082e5 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(40%,#000000), color-stop(100%,#0082e5));
-background: -webkit-linear-gradient(top,  #000000 40%,#0082e5 100%);
-background: -o-linear-gradient(top,  #000000 40%,#0082e5 100%);
-background: -ms-linear-gradient(top,  #000000 40%,#0082e5 100%);
-background: linear-gradient(to bottom,  #000000 40%,#0082e5 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#0082e5',GradientType=0 );
+  /*background: #000000;*/
+/*  background: -moz-linear-gradient(top,  #000000 40%, #0082e5 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(40%,#000000), color-stop(100%,#0082e5));
+  background: -webkit-linear-gradient(top,  #000000 40%,#0082e5 100%);
+  background: -o-linear-gradient(top,  #000000 40%,#0082e5 100%);
+  background: -ms-linear-gradient(top,  #000000 40%,#0082e5 100%);
+  background: linear-gradient(to bottom,  #000000 40%,#0082e5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#0082e5',GradientType=0 );*/
 
 }
 
@@ -34,10 +38,36 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 }
 
 #title {
-  color: #F52F4F;
-
-  text-decoration: underline;
+  /*color: #F52F4F;*/
+  font-weight: bold;
+  /*text-decoration: underline;*/
   font-size: 50px;
+}
+.long-shadow {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 25px;
+  border: none;
+  font: normal 60px/1 "Fredoka One", Helvetica, sans-serif;
+  color: rgba(255,255,255,1);
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  text-shadow: 3px 3px 0 #0199d9 , 4px 4px 0 #0199d9 , 5px 5px 0 #0199d9 , 6px 6px 0 #0199d9 , 7px 7px 0 #0199d9 , 8px 8px 0 #0199d9 , 9px 9px 0 #0199d9 , 10px 10px 0 #0199d9 , 11px 11px 0 #0199d9 , 12px 12px 0 #0199d9 , 13px 13px 0 #0199d9 , 14px 14px 0 #0199d9 , 15px 15px 0 #0199d9 , 16px 16px 0 #0199d9 , 17px 17px 0 #0199d9 , 18px 18px 0 #0199d9 , 19px 19px 0 #0199d9 , 20px 20px 0 #0199d9 ;
+}
+
+.fire {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border: none;
+  font: normal 80px/normal "Anton", Helvetica, sans-serif;
+  color: rgb(255, 255, 255);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  text-shadow: 0 0 20px rgb(254,252,201) , 10px -10px 30px rgb(254,236,133) , -20px -20px 40px rgb(255,174,52) , 20px -40px 50px rgb(236,118,12) , -20px -60px 60px rgb(205,70,6) , 0 -80px 70px rgb(151,55,22) , 10px -90px 80px rgb(69,27,14) ;
 }
 
 .clear {
@@ -83,6 +113,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
     margin-left: auto;
     margin-bottom: 20px;
     background-color: black;
+    text-shadow: 3px 3px 0 #0199d9 , 4px 4px 0 #0199d9 , 5px 5px 0 #0199d9;
+
 
 }
 
