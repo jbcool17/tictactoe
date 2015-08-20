@@ -90,6 +90,13 @@ var Tictactoe = {
         //winner?
         Tictactoe.checkForWinner(); 
 
+        //if draw
+        if ( Tictactoe.playerOneCollect.length + Tictactoe.playerTwoCollect.length === 9 && !(Tictactoe.winner)) {
+            
+                return alert('ITs A TIE!')
+
+        }
+
         //Sets player for next turn.
         Tictactoe.turnX = (player === 'X') ? false : true;
         $('#message').text((Tictactoe.turnX === true) ? 'X' : 'O');
@@ -124,11 +131,7 @@ var Tictactoe = {
     // CHECK FOR WINNER
     checkForWinner: function() {
         //Checks for draw.
-        if( Tictactoe.playerOneCollect.length + Tictactoe.playerTwoCollect.length === 9 && !(Tictactoe.winner)) {
-            
-            return alert('ITs A TIE!')
-
-        }
+        
 
         
         
@@ -148,6 +151,8 @@ var Tictactoe = {
                 console.log(player, ' wins!', 'Diff', diff.length, player, currentPlayer.length);
                 Tictactoe.addToScore(player);
                 Tictactoe.winner = true;
+
+                
                 
                 return alert(player + ' Wins!');
                 //Tictactoe.resetBoard();
